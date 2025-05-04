@@ -10,7 +10,9 @@ import SwiftUI
 struct ContentView: View {
     @State private var selectedFrame: String = "Frame_India"
     @State private var capturedImage: UIImage?
+    @State private var showPreviewDialog = false
     @State private var showShareSheet = false
+
 
 
     let availableFrames = ["Frame_India", "Frame_Aidni"] // Add your own names
@@ -51,7 +53,7 @@ struct ContentView: View {
                 Button(action: {
                     PhotoCaptureManager.shared.capturePhoto(with: selectedFrame) { image in
                         self.capturedImage = image
-                        self.showShareSheet = true
+                        self.showPreviewDialog = true
                     }
                 }) {
                     Circle()
@@ -68,13 +70,53 @@ struct ContentView: View {
                     }
                 }
                 .padding(.bottom, 30)
-            }
+            }.overlay(
+                Group {
+                    if showPreviewDialog, let image = capturedImage {
+                        ZStack {
+                            Color.black.opacity(0.7).ignoresSafeArea()
+
+                            VStack(spacing: 20) {
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(maxWidth: 300, maxHeight: 500)
+                                    .cornerRadius(12)
+                                    .shadow(radius: 10)
+
+                                HStack(spacing: 30) {
+                                    Button(action: {
+                                        // Retake
+                                        capturedImage = nil
+                                        showPreviewDialog = false
+                                    }) {
+                                        Text("Snap Again")
+                                            .foregroundColor(.white)
+                                            .padding(.vertical, 10)
+                                            .padding(.horizontal, 20)
+                                            .background(Color.red.opacity(0.8))
+                                            .cornerRadius(10)
+                                    }
+
+                                    Button(action: {
+                                        // Share
+                                        showShareSheet = true
+                                        showPreviewDialog = false
+                                    }) {
+                                        Text("Use This")
+                                            .foregroundColor(.white)
+                                            .padding(.vertical, 10)
+                                            .padding(.horizontal, 20)
+                                            .background(Color.green.opacity(0.8))
+                                            .cornerRadius(10)
+                                    }
+                                }
+                            }
+                            .padding()
+                        }
+                    }
+                }
+            )
         }
     }
-}
-
-
-
-#Preview {
-    ContentView()
 }
