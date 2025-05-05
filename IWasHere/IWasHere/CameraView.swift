@@ -33,7 +33,18 @@ class CameraViewController: UIViewController {
             DispatchQueue.main.async {
                 self.previewLayer.session = self.session
                 self.previewLayer.videoGravity = .resizeAspectFill
-                self.previewLayer.frame = self.view.bounds
+                
+                let viewWidth = self.view.bounds.width
+                let targetHeight = viewWidth * (4.0 / 3.0)
+                let yOffset = (self.view.bounds.height - targetHeight) / 2
+
+                self.previewLayer.frame = CGRect(
+                    x: 0,
+                    y: yOffset,
+                    width: viewWidth,
+                    height: targetHeight
+                )
+                
                 self.view.layer.addSublayer(self.previewLayer)
             }
 
@@ -64,6 +75,15 @@ class CameraViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        previewLayer.frame = view.bounds
+        let viewWidth = self.view.bounds.width
+        let targetHeight = viewWidth * (4.0 / 3.0)
+        let yOffset = (self.view.bounds.height - targetHeight) / 2
+
+        self.previewLayer.frame = CGRect(
+            x: 0,
+            y: yOffset,
+            width: viewWidth,
+            height: targetHeight
+        )
     }
 }

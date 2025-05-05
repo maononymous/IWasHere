@@ -6,13 +6,8 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		AE3255EC2DC7EDB20011EBB2 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3255EB2DC7EDB20011EBB2 /* ShareSheet.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
 		AE3255D82DC7DBB10011EBB2 /* IWasHere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IWasHere.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE3255EB2DC7EDB20011EBB2 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -37,7 +32,6 @@
 		AE3255CF2DC7DBB10011EBB2 = {
 			isa = PBXGroup;
 			children = (
-				AE3255EB2DC7EDB20011EBB2 /* ShareSheet.swift */,
 				AE3255DA2DC7DBB10011EBB2 /* IWasHere */,
 				AE3255D92DC7DBB10011EBB2 /* Products */,
 			);
@@ -125,7 +119,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE3255EC2DC7EDB20011EBB2 /* ShareSheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
